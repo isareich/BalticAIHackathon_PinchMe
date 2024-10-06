@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #f7f7f7, #e7e7e7); 
+            color: #333; 
+        }
+
+        .container {
+            width: 85%; 
+            max-width: 1000px;
+            margin: 30px auto; 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5em; 
+            font-weight: 600;
+            margin-bottom: 30px; 
+            color: #2c3e50; 
+        }
+
+        h1 span {
+            color: #e74c3c; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555; 
+        }
+
+        input[type="text"], textarea {
+            width: calc(100% - 16px); 
+            padding: 10px 8px; 
+            margin-bottom: 15px; 
+            border: 2px solid #bdc3c7; 
+            border-radius: 8px; 
+            box-sizing: border-box;
+            font-size: 16px; 
+            transition: border-color 0.3s ease; 
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: #3498db; 
+            outline: none; 
+        }
+
+        textarea {
+            min-height: 100px; 
+            resize: vertical; 
+        }
+
+        button {
+            background-color: #27ae60; 
+            color: white;
+            padding: 12px 24px; 
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            display: block;
+            margin: 25px auto; 
+            font-size: 18px; 
+            transition: background-color 0.3s ease; 
+        }
+
+        button:hover {
+            background-color: #2ecc71; 
+        }
+
+
+        .output-area {
+            margin-top: 30px; 
+            border: 2px solid #ecf0f1; 
+            padding: 20px; 
+            min-height: 500px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align:center;
+        }
+        #keyPoints, #userSpeech, #feedback {
+            width: calc(100% - 16px);
+            padding: 10px 8px;
+            margin-bottom: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            min-height: 150px; 
+            resize: vertical;
+        }
+
+        #evaluateButton {
+             background-color: #27ae60; 
+            color: white;
+            padding: 12px 24px; 
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            display: block;
+            margin: 25px auto; 
+            font-size: 18px; 
+            transition: background-color 0.3s ease; 
+        }
+        #evaluateButton:disabled {
+            background-color: #bdc3c7; 
+            cursor: default; 
+        }
+        #evaluateButton:hover:not(:disabled) {
+            background-color: #2ecc71; 
+        }
+
+        .feedback-area {           
+            margin-top: 30px;
+            border: 2px solid #ecf0f1;
+            padding: 20px;
+            min-height: 200px; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pitch <span>ME!</span></h1>
+
+        <label for="startupName">Startup name</label>
+        <input type="text" id="startupName" name="startupName"><br><br>
+
+        <label for="industry">Industry</label>
+        <input type="text" id="industry" name="industry"><br><br>
+
+        <label for="problem">Problem</label>
+        <textarea id="problem" name="problem"></textarea><br><br>
+
+        <label for="solution">Solution</label>
+        <textarea id="solution" name="solution"></textarea><br><br>
+
+        <label for="startupStage">Startup stage</label>
+        <input type="text" id="startupStage" name="startupStage"><br><br>
+
+        <label for="team">Team names and descriptions</label>
+        <textarea id="problem" name="team"></textarea><br><br>
+
+        <label for="mentor">Mentor names</label>
+        <textarea type="text" id="mentor" name="mentor"></textarea><br><br>
+
+        <label for="marketing">Marketing plan/information</label>
+        <textarea id="marketing" name="marketing"></textarea><br><br>
+
+        <label for="targetAudience">Target audience</label>
+        <textarea type="text" id="targetAudience" name="targetAudience"></textarea><br><br>
+
+        <label for="competitors">Competitors and other market knowledge</label>
+        <textarea id="competitors" name="competitors"></textarea><br><br>
+
+        <label for="brandGuidelines">Brand guidelines</label>
+        <textarea id="brandGuidelines" name="brandGuidelines"></textarea><br><br>
+
+        <label for="audienceOfPitch">Audience of pitch</label>
+        <textarea type="text" id="audienceOfPitch" name="audienceOfPitch"></textarea><br><br>
+
+        <label for="length">Length of pitch</label>
+        <input type="text" id="length" name="length"><br><br>
+
+
+        <label for="placeAndTime">Place and time</label>
+        <input type="text" id="placeAndTime" name="placeAndTime"><br><br>
+
+        <label for="other">Other information</label>
+        <textarea id="other" name="other"></textarea><br><br>
+
+        <form id="pitchForm" method="POST">  </form>
+        <button id="generateButton">Generate</button>
+
+        <div class="output-area">
+            <h1 id="aiOutputTitle">Output from AI</h1>
+            <textarea id="keyPoints"></textarea>
+            <textarea id="userSpeech" placeholder="Write your speech here..."></textarea>
+            <button id="evaluateButton" disabled>Evaluate Speech</button>
+        </div>
+
+        <div class="feedback-area">
+            <h2>Feedback and Evaluation</h2>
+            <textarea id="feedback"></textarea>
+        </div>
+  </div>
+  <script>
+    const form = document.getElementById('pitchForm');
+    const generateButton = document.getElementById('generateButton');
+    const keyPointsArea = document.getElementById('keyPoints');
+
+    generateButton.addEventListener('click', () => {
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            fetch('/LlamaResults', {
+                method: 'POST',
+                header: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formObject)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                }
+                else {
+                keyPointsArea.value = data.generated_text;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+</script>
+</body>
+</html>
